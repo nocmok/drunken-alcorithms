@@ -1,0 +1,81 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+\usepackage{etoolbox} % логические операторы
+\usepackage{layout}
+
+\usepackage{fancyhdr}
+
+%%% Математика
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\mathtoolsset{showonlyrefs=true}
+
+\begin{document}
+	\
+	\vfil
+	\hfil Конспекты \hfil
+	\vfil
+	
+	\newpage
+	\tableofcontents
+	
+	\newpage
+	\section{Матеша}
+	\subsection{Логарифмы}
+	Полезные свойства логарифмов:
+	\begin{equation}
+	\boxed{
+		log_a(n^k) = k \cdot log_a(n)
+	}
+	\end{equation}
+	Доказательство:
+	\begin{eqnarray}
+		a^{log_a(n^k)} = n^k = (a^{log_a(n)})^k = a^{k\cdot log_a(n)} \\ \blacksquare
+	\end{eqnarray}
+	\begin{equation}
+	\boxed{
+		log_a(n) = \frac{log_b(n)}{log_b(a)}
+	}
+	\end{equation}
+	Доказательство:
+	\begin{eqnarray}
+		n = a^{log_a(n)} = b^{log_b(n)} \Rightarrow log_b(n) = log_b(a^{log_a(n)}) = log_a(n)\cdot log_b(a) \Rightarrow \\ \Rightarrow log_a(n) = \frac{log_b(n)}{log_b(a)} \\ \blacksquare
+	\end{eqnarray}
+	
+	\begin{equation}
+		\boxed{
+			log_{a^b}(n) = \frac{1}{b} \cdot log_a(n)
+		}
+	\end{equation}
+	Доказательство:
+	\begin{eqnarray}
+		log_{a^b}(n) = \frac{log_{a}(n)}{log_a(a^b)} = \frac{1}{b} \cdot log_a(n) \\ \blacksquare
+	\end{eqnarray}
+	\begin{equation}
+		\boxed{
+			a^{log_b(n)} = n^{log_b(a)}	
+		}
+	\end{equation}
+	Доказательство:
+	\begin{eqnarray}
+		a^{log_b(n)} = n^{log_b(a)}	\Leftrightarrow log_a(a^{log_b(n)}) = log_a(n^{log_b(a)}) \Leftrightarrow \\ \Leftrightarrow log_b(n) \cdot log_a(a) = log_b(a) \cdot log_a(n) \Leftrightarrow log_a(n) = \frac{log_b(n)}{log_b(a)} \\ \blacksquare
+	\end{eqnarray}
+	
+	
+	\subsection{Основная теорема о рекурентных соотношениях (разделяй и властвуй)}
+	Предположим, некоторый алгоритм который для решения задачи размером $n$ сначала рекурсивно вызывает сам себя $a$ раз на подзадачах размером $\frac{n}{b}$, а также тратит время $O(n^d)$ на подготовку к рекурсии и сборку ответа. Тогда время работы алгоритма:
+	\begin{eqnarray}
+		T(n) = a\cdot T(\lceil \frac{n}{b} \rceil) + O(n^d), a > 0, b > 1, d \geq 0
+	\end{eqnarray}
+	\begin{eqnarray}
+		T(n) & = & O(n^d),~ d > log_b(a) \\
+		T(n) & = & O(n^d \cdot log(n)),~ d = log_b(a) \\
+		T(n) & = & O(n^{log_b(a)}), ~ d < log_b(a)
+	\end{eqnarray}
+\end{document}
