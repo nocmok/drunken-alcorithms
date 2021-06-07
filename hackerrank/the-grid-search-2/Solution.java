@@ -102,7 +102,7 @@ class Result {
         int i = 0;
         for (String line : matrix) {
             for (int j = 0; j < n; ++j) {
-                ints[i][j] = line.charAt(j) - '0';
+                ints[i][j] = line.charAt(j) - '0' + 1;
             }
             ++i;
         }
